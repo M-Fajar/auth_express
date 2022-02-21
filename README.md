@@ -4,7 +4,7 @@ Link Heroku : https://synrgy-fajar.herokuapp.com/
 
 # Admin
 
-email = admin@gmail.com
+email = admin@gmail.com <br />
 password = admin
 
 # ROUTES
