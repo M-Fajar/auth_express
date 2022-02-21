@@ -14,7 +14,7 @@ passport.use(
       ? encrypt.isPwdValid(password, user.dataValues.password)
       : 0;
     if (!user || !compare)
-      return done(null, false, { message: "Password and username invalid!" });
+      return done(null, false, { message: "Password or username invalid!" });
 
     return done(null, user);
   })
