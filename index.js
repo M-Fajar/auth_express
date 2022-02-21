@@ -1,5 +1,6 @@
 const express = require("express");
-const PORT = 3088;
+require("dotenv").config();
+const PORT = process.env.PORT || 3088;
 const routes = require("./routes");
 const passport = require("passport");
 const flash = require("connect-flash");
