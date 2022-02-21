@@ -13,7 +13,7 @@ class Controller {
     res.render("login", { user: req.user, message: req.flash("error") });
   }
   static Register(req, res) {
-    if (req.user) {
+    if (typeof req.user != "undefined") {
       res.redirect("/");
       return;
     }
