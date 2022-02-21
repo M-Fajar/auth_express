@@ -32,9 +32,9 @@ app.all("*", (req, res) => {
   res.redirect("/");
 });
 
-app.use((err, req, res, next) => {
-  res.status(500).send("<h1> 500 Internal Server Error</h1>");
-});
+// app.use((err, req, res, next) => {
+//   res.status(500).send("<h1> 500 Internal Server Error</h1>");
+// });
 app.listen(PORT, () => {
   console.info(`Server Runnong On http://localhost:${PORT}`);
 });
