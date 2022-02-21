@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+  background-color: #9921e8;
+  background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+}
+.container {
+  height: 100%;
+}
+.login {
+  height: 400px;
+}
+.card {
+  border-radius: 10px;
+}
+.btn-login {
+  color: white;
+  background-color: #9921e8;
+  background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+  margin-bottom: 5px;
+}
+.btn-login:hover {
+  color: white;
+}
+.hidden {
+  display: none;
+}
