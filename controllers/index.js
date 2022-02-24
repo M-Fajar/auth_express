@@ -164,7 +164,7 @@ class Controller {
       status,
       method: payment_type,
     };
-    const updated = await Order.updated(values, {
+    const updated = await Order.update(values, {
       where: {
         id: order_id,
       },
