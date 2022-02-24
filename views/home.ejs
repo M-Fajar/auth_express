@@ -163,7 +163,14 @@
                   onclick="pay('${data.data.id}')"
                   class="btn btn-warning text-light btn-pay"
                   
-                  >Bayar</a
+                  >
+                  <span
+                    class="spinner-border spinner-border-sm hidden"
+                    role="status"
+                    aria-hidden="true"
+                    id="loadPay<%=item.id%>"
+                  ></span>
+                  Bayar</a
                 >`;
 
             // Add some text to the new cells:
