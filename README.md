@@ -1,6 +1,6 @@
 # auth_express
 
-Link Deploy : https://synrgy-fajar.herokuapp.com/
+Link Deploy : https://synrgy-fajar.herokuapp.com/ <br/>
 Link Sandbox Payment : https://simulator.sandbox.midtrans.com/bca/va/index
 
 # Admin
