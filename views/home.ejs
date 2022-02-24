@@ -13,6 +13,11 @@
       crossorigin="anonymous"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-0fB_qnnAp1usFTWc"
+    ></script>
     <link rel="stylesheet" href="css/home.css" />
 
     <title>Profile</title>
@@ -42,9 +47,143 @@
       </div>
     </div>
 
+    <div class="row d-flex justify-content-center mt-5">
+      <div class="col-md-6 col-12">
+        <form
+          action="javascript:void(0);"
+          style="border: 2px solid black; padding: 10px"
+        >
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-5 col-10 mt-1">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Product ID"
+                name="productid"
+                id="productid"
+                required
+              />
+            </div>
+            <div class="col-md-5 col-10 mt-1">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Amount"
+                name="amount"
+                id="amount"
+                required
+              />
+            </div>
+            <div class="col-md-2 col=8 text-center mt-1">
+              <button
+                type="submit"
+                id="btn-checkout"
+                class="btn btn-warning text-light"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mb-5 mt-4">
+      <div class="col-md-10">
+        <table class="table text-center">
+          <thead style="background-color: #9921e8; color: white">
+            <tr>
+              <td>No</td>
+              <td>Order ID</td>
+              <td>Product ID</td>
+              <td>Amount</td>
+              <td>Status</td>
+              <td>Metode</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody id="row-table">
+            <% order.forEach((item,i) => {%>
+            <tr>
+              <td><%=(i+1)%></td>
+              <td><%=item.id%></td>
+              <td><%=item.productid%></td>
+              <td><%=item.amount%></td>
+              <td><%=item.status%></td>
+              <td><%=item.method%></td>
+              <td>
+                <a
+                  onclick="pay('<%=item.id%>')"
+                  class="btn btn-warning text-light btn-pay"
+                >
+                  <span
+                    class="spinner-border spinner-border-sm hidden"
+                    role="status"
+                    aria-hidden="true"
+                    id="loadPay<%=item.id%>"
+                  ></span>
+                  Bayar</a
+                >
+              </td>
+            </tr>
+            <%})%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    <script>
+      var Checkout = document.getElementById("btn-checkout");
+      Checkout.addEventListener("click", () => {
+        console.log("checkout");
+        let amount = document.getElementById("amount").value;
+        let productid = document.getElementById("productid").value;
+        $.post(
+          "/order",
+          {
+            amount: amount,
+            productid: productid,
+          },
+          (data, status) => {
+            let table = document.getElementById("row-table");
+            let countRow = table.rows.length;
+            var row = table.insertRow(countRow);
+
+            row.insertCell(0).innerHTML = countRow + 1;
+            row.insertCell(1).innerHTML = data.data.id;
+            row.insertCell(2).innerHTML = data.data.productid;
+            row.insertCell(3).innerHTML = data.data.amount;
+            row.insertCell(4).innerHTML = data.data.status;
+            row.insertCell(5).innerHTML = data.data.method;
+            row.insertCell(6).innerHTML = `<a
+                  onclick="pay('${data.data.id}')"
+                  class="btn btn-warning text-light btn-pay"
+                  
+                  >Bayar</a
+                >`;
+
+            // Add some text to the new cells:
+
+            document.getElementById("amount").value = "";
+            document.getElementById("productid").value = "";
+          }
+        );
+      });
+
+      function pay(id) {
+        var load = document.getElementById(`loadPay${id}`);
+        load.classList.remove("hidden");
+
+        $.post("/order/pay", { id: id }, (data, status) => {
+          window.snap.pay(data.transactionToken);
+          load.classList.add("hidden");
+        });
+      }
+    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

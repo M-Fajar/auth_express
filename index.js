@@ -31,6 +31,7 @@ app.all("*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(500).send("<h1> 500 Internal Server Error</h1>");
 });
 app.listen(PORT, () => {

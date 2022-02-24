@@ -22,7 +22,10 @@ route.post(
 route.use(authentication);
 route.get("/", studentAuthorization, Controller.Home);
 route.get("/admin", adminAuthorization, Controller.Admin);
-route.get("/delete/:id", Controller.deleteUser);
+route.get("/delete/:id", adminAuthorization, Controller.deleteUser);
+route.get("/order/delete/:id", adminAuthorization, Controller.deleteOrder);
 route.post("/logout", Controller.Logout);
-
+route.post("/order", Controller.Order);
+route.post("/order/pay", Controller.payOrder);
+route.post("/order/payment/handling", Controller.paymentHandling);
 module.exports = route;

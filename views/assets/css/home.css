@@ -29,3 +29,10 @@
 .user-detail .btn {
   margin-bottom: 10px;
 }
+.hidden {
+  display: none;
+}
+
+.btn-pay {
+  width: 90px;
+}
