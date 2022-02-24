@@ -35,5 +35,5 @@ app.use((err, req, res, next) => {
   res.status(500).send("<h1> 500 Internal Server Error</h1>");
 });
 app.listen(PORT, () => {
-  console.info(`Server Runnong On http://localhost:${PORT}`);
+  console.info(`Server Running On http://localhost:${PORT}`);
 });
