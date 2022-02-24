@@ -162,13 +162,12 @@
             row.insertCell(6).innerHTML = `<a
                   onclick="pay('${data.data.id}')"
                   class="btn btn-warning text-light btn-pay"
-                  
                   >
                   <span
                     class="spinner-border spinner-border-sm hidden"
                     role="status"
                     aria-hidden="true"
-                    id="loadPay'${data.data.id}'"
+                    id="loadPay${data.data.id}"
                   ></span>
                   Bayar</a
                 >`;
