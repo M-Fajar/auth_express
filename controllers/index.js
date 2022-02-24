@@ -171,7 +171,7 @@ class Controller {
       },
     });
 
-    res.status(200);
+    res.sendStatus(200);
   }
 }
 
