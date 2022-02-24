@@ -155,20 +155,20 @@ class Controller {
   }
 
   static async paymentHandling(req, res) {
-    // const { order_id, transaction_status, payment_type } = req.body;
-    // let status = "pending";
-    // if (transaction_status == "settlement" || transaction_status == "capture") {
-    //   status = "success";
-    // }
-    // const values = {
-    //   status,
-    //   method: payment_type,
-    // };
-    // const updated = await Order.updated(values, {
-    //   where: {
-    //     id: order_id,
-    //   },
-    // });
+    const { order_id, transaction_status, payment_type } = req.body;
+    let status = "pending";
+    if (transaction_status == "settlement" || transaction_status == "capture") {
+      status = "success";
+    }
+    const values = {
+      status,
+      method: payment_type,
+    };
+    const updated = await Order.updated(values, {
+      where: {
+        id: order_id,
+      },
+    });
 
     res.sendStatus(200);
   }
